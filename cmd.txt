@@ -1,0 +1,39 @@
+Microsoft Windows [Version 10.0.26100.4484]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\akshatha>git --version
+git version 2.50.0.windows.1
+
+C:\akshatha>git config --global user.name "jsakshu"
+
+C:\akshatha>git config --global user.email "jsakshuammi@gmail.com"
+
+C:\akshatha>git init -b main
+Initialized empty Git repository in C:/akshatha/.git/
+
+C:\akshatha>git add demo.txt
+
+C:\akshatha>git commit -m "first commit"
+[main (root-commit) b210bab] first commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 demo.txt
+
+C:\akshatha>git remote add origin "https://github.com/jsakshu/demo_repo.git"
+
+C:\akshatha>git status
+On branch main
+nothing to commit, working tree clean
+
+C:\akshatha>git push origin main
+info: please complete authentication in your browser...
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 207 bytes | 207.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/jsakshu/demo_repo.git
+ * [new branch]      main -> main
+
+C:\akshatha>git push origin main
+Everything up-to-date
+
+C:\akshatha>
