@@ -1,0 +1,275 @@
+
+Search
+Databases and Collections
+
+
+My Queries
+
+Databases
+
+Performance
+No saved queries yet.
+Start saving your aggregations and find queries, you'll see them here.
+
+Not sure where to start?  
+Visit our Docs →
+
+>_MONGOSH
+
+
+use mongodb_new
+switched to db mongodb_new
+show databases
+admin   40.00 KiB
+config  60.00 KiB
+local   72.00 KiB
+
+
+
+db.createCollection(tabe_1)
+
+show databases
+admin    40.00 KiB
+config  108.00 KiB
+local    72.00 KiB
+
+use mongodb_new
+switched to db mongodb_new
+
+
+db.createCollection("employee")
+{ ok: 1 }
+
+db.employee.drop()
+true
+
+show collections
+db.createCollection("employeetable")
+{ ok: 1 }
+
+show collections
+employeetable
+
+db.employeetable.drop()
+true
+
+db.dropDatabase()
+{ ok: 1, dropped: 'mongodb_new' }
+mongodb_new
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+use datamites
+switched to db datamites
+db.createCollection("employee")
+{ ok: 1 }
+show databases
+admin       40.00 KiB
+config     108.00 KiB
+datamites    8.00 KiB
+local       72.00 KiB
+show collections
+employee
+db.employee.insertOne({name:"akshatha",role:"Trainer"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64d8ec8fb5bd54150e381f78")
+}
+db.employee.insertOne({name:"Rohan",role:"developer"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64d8eca7b5bd54150e381f79")
+}
+db.employee.insertOne({name:"Rohan",role:"developer",age:23})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64d8ecb8b5bd54150e381f7a")
+}
+
+
+
+
+
+db.employee.insertMany([{name:"Rohan",role:"developer",age:23},{name:"Rakshit",role:"HR",age:7}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64d8ee4ab5bd54150e381f7b"),
+    '1': ObjectId("64d8ee4ab5bd54150e381f7c")
+  }
+}
+db.employee.insertMany([{name:"Rohan",role:"developer",age:23},{name:"Rakshit",role:"HR"},{name:"sahana",age:34,role:"manager",phone:990055066}])
+
+
+
+
+-----------------------------------------------------------------------------------------
+db.employee.find()
+
+{
+  _id: ObjectId("64d8ec8fb5bd54150e381f78"),
+  name: 'akshatha',
+  role: 'Trainer'
+}
+
+{
+  _id: ObjectId("64d8eca7b5bd54150e381f79"),
+  name: 'Rohan',
+  role: 'developer'
+}
+
+{
+  _id: ObjectId("64d8ecb8b5bd54150e381f7a"),
+  name: 'Rohan',
+  role: 'developer',
+  age: 23
+}
+
+{
+  _id: ObjectId("64d8ee4ab5bd54150e381f7b"),
+  name: 'Rohan',
+  role: 'developer',
+  age: 23
+}
+
+
+{
+  _id: ObjectId("64d8ee4ab5bd54150e381f7c"),
+  name: 'Rakshit',
+  role: 'HR',
+  age: 7
+}
+
+
+{
+  _id: ObjectId("64d8ee5cb5bd54150e381f7d"),
+  name: 'Rohan',
+  role: 'developer',
+  age: 23
+}
+
+{
+  _id: ObjectId("64d8ee5cb5bd54150e381f7e"),
+  name: 'Rakshit',
+  role: 'HR'
+}
+
+
+{
+  _id: ObjectId("64d8ee5cb5bd54150e381f7f"),
+  name: 'sahana',
+  age: 34,
+  role: 'manager',
+  phone: 990055066
+}
+
+
+
+db.employee.find({name:'sahana'})
+{
+  _id: ObjectId("64d8ee5cb5bd54150e381f7f"),
+  name: 'sahana',
+  age: 34,
+  role: 'manager',
+  phone: 990055066
+}
+
+_________________________________________________________________________________
+
+db.employee.find({age:{$gte:25}})
+{
+  _id: ObjectId("64d8ee5cb5bd54150e381f7f"),
+  name: 'sahana',
+  age: 34,
+  role: 'manager',
+  phone: 990055066
+}
+
+db.employee.find({age:{$lte:10}})
+{
+  _id: ObjectId("64d8ee4ab5bd54150e381f7c"),
+  name: 'Rakshit',
+  role: 'HR',
+  age: 7
+}
+
+db.employee.find({age:{$eq:7}})
+{
+  _id: ObjectId("64d8ee4ab5bd54150e381f7c"),
+  name: 'Rakshit',
+  role: 'HR',
+  age: 7
+}
+
+------------------------------------------------------------------------------------
+
+db.employee.find().sort({age:1}) 
+
+db.employee.find().sort({age:-1})
+
+-----------------------------------------------------------------------------------------
+
+db.employee.updateOne({name:"Rakshit"},{$set:{role:"Team Lead"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+
+db.employee.find({name:"Rakshit"})
+
+
+{
+  _id: ObjectId("64d8ee4ab5bd54150e381f7c"),
+  name: 'Rakshit',
+  role: 'Team Lead',
+  age: 7
+}
+
+{
+  _id: ObjectId("64d8ee5cb5bd54150e381f7e"),
+  name: 'Rakshit',
+  role: 'HR'
+}
+
+db.employee.updateMany({name:"Rohan"},{$set:{role:"Data Analysist"}}
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+  modifiedCount: 4,
+  upsertedCount: 0
+}
+
+{
+  _id: ObjectId("64d8eca7b5bd54150e381f79"),
+  name: 'Rohan',
+  role: 'Data Analysist'
+}
+
+{
+  _id: ObjectId("64d8ecb8b5bd54150e381f7a"),
+  name: 'Rohan',
+  role: 'Data Analysist',
+  age: 23
+}
+{
+  _id: ObjectId("64d8ee4ab5bd54150e381f7b"),
+  name: 'Rohan',
+  role: 'Data Analysist',
+  age: 23
+}
+
+{
+  _id: ObjectId("64d8ee5cb5bd54150e381f7d"),
+  name: 'Rohan',
+  role: 'Data Analysist',
+  age: 23
+}
+
+
